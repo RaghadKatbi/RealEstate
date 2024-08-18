@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../screen/bottom_nav.dart';
 
 class GridItem extends StatefulWidget {
-  const GridItem({super.key,});
+  final String name, pathImage;
+  const GridItem({super.key, required this.name, required this.pathImage});
 
   @override
   State<GridItem> createState() => _GridItemState();
@@ -16,6 +17,7 @@ class _GridItemState extends State<GridItem> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
@@ -82,17 +84,17 @@ class _GridItemState extends State<GridItem> with TickerProviderStateMixin {
                             topRight: Radius.circular(25),
                             topLeft: Radius.circular(25),
                           ),
-                          child: Image.asset(
-                            "asset/images/img.png",
+                          child: Image.network(
+                            "https://proengaqar.com/img/city/${widget.pathImage}",
                             height: size.height*0.12,
                             width: double.infinity,
                             fit: BoxFit.cover,
                           ),
                         ),
-                        const Padding(
+                         Padding(
                           padding: EdgeInsets.only(left: 0.0),
                           child: Text(
-                            "حلب",
+                            widget.name,
                             style: TextStyle(
                               fontSize: 27,
                               fontFamily: 'cairo',

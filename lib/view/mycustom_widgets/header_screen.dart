@@ -14,7 +14,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
     final size=MediaQuery.of(context).size;
     return  SizedBox(
       width: double.infinity,
-      height: size.height*0.3,
+      height: size.height*0.28,
       child: Stack(
         children: [
           ClipRRect(
@@ -58,37 +58,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
               ],
             ),
           ),
-          Padding(
-            padding:  EdgeInsets.fromLTRB(size.width*0.07, size.height*0.22, size.width*0.07,0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: TextField(
-                controller: _searchController,
-                textAlign: TextAlign.right,
-                decoration: InputDecoration(
-                  hintText: 'ابحث هنا',
-                  hintStyle: TextStyle(
-                      color: Colors.grey[700], fontFamily: 'changes',),
-                  suffixIcon: Icon(Icons.search, color: Colors.grey[700]),
-                  prefixIcon: _searchController.text.isNotEmpty ? IconButton(
-                    icon: Icon(Icons.clear, color: Colors.grey[700]),
-                    onPressed: () {
-                      setState(() {
-                        _searchController.clear();
-                      });
-                    },
-                  ):null,
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 12),
-                ),
-                onChanged: (text) {},
-              ),
-            ),
-          )
+
         ],
       ),
     );

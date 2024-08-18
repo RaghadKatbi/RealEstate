@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:realstate/view/screen/add_realestate.dart';
+import 'package:realstate/view/screen/bottom_nav.dart';
 
-class FavoriteRealestate extends StatefulWidget {
-  const FavoriteRealestate({super.key});
+class RealEstateRecentlyAdded extends StatefulWidget {
+  const RealEstateRecentlyAdded({super.key});
 
   @override
-  State<FavoriteRealestate> createState() => _FavoriteRealestateState();
+  State<RealEstateRecentlyAdded> createState() => _RealEstateRecentlyAddedState();
 }
 
-class _FavoriteRealestateState extends State<FavoriteRealestate> {
-  late bool isFavorite = true;
-
+class _RealEstateRecentlyAddedState extends State<RealEstateRecentlyAdded> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,17 +17,17 @@ class _FavoriteRealestateState extends State<FavoriteRealestate> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 110.0, top: 20, bottom: 20),
+            padding: const EdgeInsets.only(left: 110.0, top: 20,bottom: 20),
             child: Text(
               textAlign: TextAlign.right,
-              "العقارات المفضلة لديك",
+              "العقارات التي اضفتها مسبقا",
               style: const TextStyle(
                   color: Color(0xff365271), fontSize: 20, fontFamily: 'cairo'),
             ),
           ),
           Expanded(
               child: ListView.builder(
-            itemCount: 3,
+                itemCount: 3,
             itemBuilder: (context, index) => Card(
                 color: const Color(0xf0d0dae6),
                 shape: RoundedRectangleBorder(
@@ -60,7 +60,7 @@ class _FavoriteRealestateState extends State<FavoriteRealestate> {
                                 padding: const EdgeInsets.all(2.0),
                                 child: Text(
                                   selectionColor: Colors.blue.shade50,
-                                  "المزيد من التفاصيل ",
+                                  "معلق ",
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
@@ -72,68 +72,47 @@ class _FavoriteRealestateState extends State<FavoriteRealestate> {
                             ))
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: double.infinity,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  if (isFavorite)
-                                    isFavorite = false;
-                                  else
-                                    isFavorite = true;
-                                });
-                              },
-                              icon: Icon(
-                                isFavorite
-                                    ? Icons.favorite
-                                    : Icons.favorite_border,
-                                color: const Color(0xff1a395b),
-                                size: 35,
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            "فيلا",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey,
+                              fontFamily: 'cairo',
+                            ),
+                          ),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text("ايجار",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'cairo',
                               )),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              SizedBox(
-                                height: 3,
-                              ),
-                              Text(
-                                "فيلا",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.grey,
-                                  fontFamily: 'cairo',
-                                ),
-                              ),
-                              SizedBox(
-                                height: 3,
-                              ),
-                              Text("ايجار",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: 'cairo',
-                                  )),
-                              SizedBox(
-                                height: 3,
-                              ),
-                              Text("الحمدانية",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: 'cairo',
-                                  )),
-                              SizedBox(
-                                height: 3,
-                              ),
-                              Text("12345",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.blue,
-                                    fontFamily: 'cairo',
-                                  ))
-                            ],
-                          )
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text("الحمدانية",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'cairo',
+                              )),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text("12345",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.blue,
+                                fontFamily: 'cairo',
+                              ))
                         ],
                       ),
                     ),
@@ -206,6 +185,14 @@ class _FavoriteRealestateState extends State<FavoriteRealestate> {
                 )),
           ))
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        foregroundColor: Colors.white,
+        backgroundColor: Color(0xff365271),
+        onPressed: () {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyBottomNavigationBar(8),));
+        },
+        child: Icon(Icons.add),
       ),
     );
   }

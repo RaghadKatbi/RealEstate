@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../mycustom_widgets/my_textfield.dart';
+
 class ContactUs extends StatefulWidget {
   const ContactUs({super.key});
 
@@ -10,7 +12,7 @@ class ContactUs extends StatefulWidget {
 
 class _ContactUsState extends State<ContactUs> {
   final TextEditingController name = TextEditingController();
-  final TextEditingController email = TextEditingController();
+  final TextEditingController phone = TextEditingController();
   final TextEditingController message = TextEditingController();
 
   @override
@@ -54,7 +56,7 @@ class _ContactUsState extends State<ContactUs> {
                     child: Text(
                       "صفحة التواصل",
                       style: TextStyle(
-                          //backgroundColor: Color(0xff365271),
+                        //backgroundColor: Color(0xff365271),
                           color: Color(0xff365271),
                           fontWeight: FontWeight.bold,
                           fontFamily: 'change',
@@ -67,7 +69,7 @@ class _ContactUsState extends State<ContactUs> {
                   child: Text(
                     "ابق على تواصل معنا",
                     style: TextStyle(
-                        //backgroundColor: Color(0xff365271),
+                      //backgroundColor: Color(0xff365271),
                         color: Color(0xff365271),
                         fontWeight: FontWeight.bold,
                         fontFamily: 'change',
@@ -83,18 +85,24 @@ class _ContactUsState extends State<ContactUs> {
                       maxLine: 1,
                       maxLength: 10,
                       textEditingController: name,
-                      enable: true),
+                      enable: false,
+                      validator: (value) {
+                        return null;
+                      }),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(18, 0, 18, 18),
                   child: myTextFormField(
-                      hintText: "الإيميل ",
+                      hintText: "رقم الهاتف ",
                       icon: Icons.email,
-                      textInputType: TextInputType.emailAddress,
+                      textInputType: TextInputType.phone,
                       maxLine: 1,
                       maxLength: 10,
-                      textEditingController: email,
-                      enable: true),
+                      textEditingController: phone,
+                      enable: true,
+                      validator: (value) {
+                        return null;
+                      }),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(18.0, 0, 18, 18),
@@ -105,7 +113,10 @@ class _ContactUsState extends State<ContactUs> {
                       maxLine: 3,
                       maxLength: 10,
                       textEditingController: message,
-                      enable: true),
+                      enable: false,
+                      validator: (value) {
+                        return null;
+                      }),
                 ),
                 SizedBox(
                     width: 120,
@@ -113,7 +124,7 @@ class _ContactUsState extends State<ContactUs> {
                     child: ElevatedButton(
                         style: const ButtonStyle(
                             backgroundColor:
-                                WidgetStatePropertyAll(Color(0xffd1d1d1))),
+                            WidgetStatePropertyAll(Color(0xffd1d1d1))),
                         onPressed: () {
 
                         },
@@ -201,46 +212,4 @@ class _ContactUsState extends State<ContactUs> {
     );
   }
 
-  Widget myTextFormField(
-      {required String hintText,
-      required IconData icon,
-      required TextInputType textInputType,
-      required int maxLine,
-      required int maxLength,
-      required TextEditingController textEditingController,
-      required bool enable}) {
-    return TextFormField(
-      textAlign: TextAlign.right,
-      maxLength: maxLength,
-      maxLines: maxLine,
-      enabled: enable,
-      cursorColor: Colors.grey,
-      controller: textEditingController,
-      decoration: InputDecoration(
-          counterText: "",
-          hintText: hintText,
-          hintStyle: const TextStyle(fontFamily: 'cairo'),
-          suffixIcon: Container(
-            margin: const EdgeInsets.all(4),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(35),
-                color: const Color(0xff657c90)),
-            child: Icon(
-              icon,
-              color: Colors.white,
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25),
-              borderSide: const BorderSide(color: Colors.transparent)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25),
-              borderSide: const BorderSide(color: Colors.transparent)),
-          //errorText: " Error ",
-          fillColor: Colors.blueGrey.shade50,
-          filled: true,
-          alignLabelWithHint: true,
-          border: InputBorder.none),
-    );
-  }
 }
